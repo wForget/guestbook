@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8">
+<!DICTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html" charset="utf-8"/>
+		<title>GuestBook</title>
+		<link rel="stylesheet" type="text/css" href="/static/main.css">
+	</head>
+	<body>
+		<div id="main">
+			<h1>GuestBook</h1>
+			<div id="form-area">
+				<p>Please comment here :</p>
+				<form action="/post" method="post">
+					<table>
+						<tr>
+							<th>Name</th>
+							<td>
+								<input type="text" size="20" name="name">
+							</td>
+						</tr>
+						<tr>
+							<th>Comment</th>
+							<td>
+								<textarea rows="5" cols="40" name="comment"></textarea>
+							</td>
+						</tr>
+					</table>
+					<p><button type="submit">Commit</button></p>
+				</form>
+			</div>
+
+			<div id="entries-area">
+				<h2>The comments history</h2>
+				<div id="entry">
+					{% for greeting in greeting_list %}
+
+					<h3>{{greeting.name}} comment at {{greeting.create_at|datetime_fmt}}</h3>
+					<p>{{greeting.comment|nl2br}}</p>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
